@@ -4,6 +4,8 @@ package _02_simon_says;
  *    Level 1
  */
 
+import java.util.Random;
+
 public class SimonSaysRunner {
 	public static void main(String[] args){
 		new SimonSays().run();
