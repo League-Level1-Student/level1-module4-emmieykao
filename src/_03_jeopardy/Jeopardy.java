@@ -35,7 +35,7 @@ import javax.swing.JPanel;
 public class Jeopardy implements ActionListener {
 	private JButton firstButton;
 	private JButton secondButton;
-	private JButton thirdButton, fourthButton;
+	private JButton thirdButton, fourthButton, fifthButton, sixthButton;
 	private JPanel quizPanel;
 	private int score = 0;
 	private JLabel scoreBox = new JLabel("0");
@@ -70,15 +70,27 @@ quizPanel.add(firstButton);
 		// 9. Use the secondButton variable to hold a button using the createButton
 		// method
 secondButton=createButton("200");
+thirdButton=createButton("400");
+fourthButton=createButton("600");
+fifthButton=createButton("800");
+sixthButton=createButton("1000");
 		// 10. Add the secondButton to the quizPanel
 quizPanel.add(secondButton);
+quizPanel.add(thirdButton);
+quizPanel.add(fourthButton);
+quizPanel.add(fifthButton);
+quizPanel.add(sixthButton);
 		// 11. Add action listeners to the buttons (2 lines of code)
 firstButton.addActionListener(this);
 secondButton.addActionListener(this);
 		// 12. Write the code to complete the actionPerformed() method below
 
 		// 13. Add buttons so that you have $200, $400, $600, $800 and $1000 questions
-		
+thirdButton.addActionListener(this);
+fourthButton.addActionListener(this);
+fifthButton.addActionListener(this);
+sixthButton.addActionListener(this);
+
 		 /*
 		 * [optional] Use the showImage or playSound methods when the user answers a
 		 * question
@@ -108,21 +120,47 @@ buttonCount++;
 	public void actionPerformed(ActionEvent e) {
 		
 		// Remove this temporary message after testing:
-		JOptionPane.showMessageDialog(null, "pressed " + ((JButton) e.getSource()).getText() + " button");
+		//JOptionPane.showMessageDialog(null, "pressed " + ((JButton) e.getSource()).getText() + " button");
 
 		JButton buttonPressed = (JButton) e.getSource();
 		// If the buttonPressed was the firstButton
 if(buttonPressed==firstButton) {
 			// Call the askQuestion() method
- askQuestion("question1", "1", 100);
+ askQuestion("What is ((123^2-√(456)+789)^0+10)? No calculators!", "10", 100);
 		// Complete the code in the askQuestion() method. When you play the game, the score should change.
+
+firstButton.setText("");
 }
 		// If the buttonPressed was the secondButton
+if(buttonPressed==secondButton) {
+askQuestion("In a 30-60-90 triangle, if the hypotenuse is 1 unit long, how long is the side opposite the 60° angle? No calculators!", "√3", 200);
+updateScore();
+secondButton.setText("");
+}
 
 			// Call the askQuestion() method with a harder question
 
 		// Clear the text on the button that was pressed (set the button text to nothing)
-
+if(buttonPressed==thirdButton) {
+askQuestion("What is the value of log(0.1)? No calculators!", "-1", 400);
+updateScore();
+thirdButton.setText("");
+}
+if(buttonPressed==fourthButton) {
+askQuestion("What is the probability that all members of a 15-person class have different birthdays? Round to the nearest tenth of a percent. Calculators are permitted.", "74.7%", 600);
+updateScore();
+fourthButton.setText("");
+}
+if(buttonPressed==fifthButton) {
+askQuestion("In many states, automobile license plates display six characters — three letters followed by a three-digit number, as in SAS-311. Would this system work adequately in California? Calculators are permitted.", "no", 800);
+updateScore();
+fifthButton.setText("");
+}
+if(buttonPressed==sixthButton) {
+askQuestion("Find coordinates x and y that are equivalent to polar coordinates r = 8 and θ = 112. Round to the nearest thousandth. Calculators are permitted.", "(-2.997, 7.417)", 1000);
+updateScore();
+sixthButton.setText("");
+}
 	}
 
 	private void askQuestion(String question, String correctAnswer, int prizeMoney) {
@@ -141,6 +179,8 @@ if(answer.equals(correctAnswer)){
 score=score+prizeMoney;
 			// Pop up a message to tell the user they were correct
 JOptionPane.showMessageDialog(null, "You are correct!");
+updateScore();
+
 }
 		// Otherwise
 else {
