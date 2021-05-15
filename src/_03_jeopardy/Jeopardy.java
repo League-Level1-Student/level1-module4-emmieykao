@@ -126,14 +126,14 @@ buttonCount++;
 		// If the buttonPressed was the firstButton
 if(buttonPressed==firstButton) {
 			// Call the askQuestion() method
- askQuestion("What is ((123^2-√(456)+789)^0+10)? No calculators!", "10", 100);
+ askQuestion("What is 5+5?", "10", 100);
 		// Complete the code in the askQuestion() method. When you play the game, the score should change.
 
 firstButton.setText("");
 }
 		// If the buttonPressed was the secondButton
 if(buttonPressed==secondButton) {
-askQuestion("In a 30-60-90 triangle, if the hypotenuse is 1 unit long, how long is the side opposite the 60° angle? No calculators!", "√3", 200);
+askQuestion("What is the value of any angle in an equilateral triangle?", "60°", 200);
 updateScore();
 secondButton.setText("");
 }
@@ -142,22 +142,22 @@ secondButton.setText("");
 
 		// Clear the text on the button that was pressed (set the button text to nothing)
 if(buttonPressed==thirdButton) {
-askQuestion("What is the value of log(0.1)? No calculators!", "-1", 400);
+askQuestion("How many sides does a septagon have?", "7", 400);
 updateScore();
 thirdButton.setText("");
 }
 if(buttonPressed==fourthButton) {
-askQuestion("What is the probability that all members of a 15-person class have different birthdays? Round to the nearest tenth of a percent. Calculators are permitted.", "74.7%", 600);
+askQuestion("What is 2.56+7.44?", "10", 600);
 updateScore();
 fourthButton.setText("");
 }
 if(buttonPressed==fifthButton) {
-askQuestion("In many states, automobile license plates display six characters — three letters followed by a three-digit number, as in SAS-311. Would this system work adequately in California? Calculators are permitted.", "no", 800);
+askQuestion("What is the y intercept of the line y=8x+9?", "(0,9)", 800);
 updateScore();
 fifthButton.setText("");
 }
 if(buttonPressed==sixthButton) {
-askQuestion("Find coordinates x and y that are equivalent to polar coordinates r = 8 and θ = 112. Round to the nearest thousandth. Calculators are permitted.", "(-2.997, 7.417)", 1000);
+askQuestion("If Kylo's head is 3 inches long, Kylo's body is 17 inches long, and Kylo's tail is 4 inches long, how many feet long is Kylo?", "2", 1000);
 updateScore();
 sixthButton.setText("");
 }
