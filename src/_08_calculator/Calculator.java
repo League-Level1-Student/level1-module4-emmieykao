@@ -20,8 +20,8 @@ JButton mul=new JButton();
 JButton div=new JButton();
 JTextField num1=new JTextField(5);
 JTextField num2=new JTextField(5);
-static JLabel label1=new JLabel();
-static JLabel label2=new JLabel();
+JLabel label1=new JLabel();
+
 void setup() {
 	panel.add(num1);
 	panel.add(num2);
@@ -30,8 +30,9 @@ void setup() {
 	panel.add(mul);
 	panel.add(div);
 	panel.add(label1);
-	panel.add(label2);
-	panel.setLayout(new GridLayout(3,4));
+label1.setSize(100, 50);
+
+	panel.setLayout(new GridLayout(4,3));
 add.setText("+");
 sub.setText("-");
 mul.setText("x");
@@ -63,8 +64,44 @@ return a/b;
 }
 @Override
 public void actionPerformed(ActionEvent e) {
+	JButton buttonPressed = (JButton) e.getSource();
 	// TODO Auto-generated method stub
-	String numx
+if (buttonPressed==add) {
+	String xasstring=num1.getText();
+	int x=Integer.parseInt(xasstring);
+	String yasstring=num2.getText();
+	int y=Integer.parseInt(yasstring);
+	int i=add(x,y);
+	String iasstring=(i+ " ");
+	label1.setText(iasstring);
+}
+if (buttonPressed==sub) {
+	String xasstring=num1.getText();
+	int x=Integer.parseInt(xasstring);
+	String yasstring=num2.getText();
+	int y=Integer.parseInt(yasstring);
+	int i=sub(x,y);
+	String iasstring=(i+ " ");
+	label1.setText(iasstring);
+}
+if (buttonPressed==mul) {
+	String xasstring=num1.getText();
+	int x=Integer.parseInt(xasstring);
+	String yasstring=num2.getText();
+	int y=Integer.parseInt(yasstring);
+	int i=mul(x,y);
+	String iasstring=(i+ " ");
+	label1.setText(iasstring);
+}
+if (buttonPressed==div) {
+	String xasstring=num1.getText();
+	int x=Integer.parseInt(xasstring);
+	String yasstring=num2.getText();
+	int y=Integer.parseInt(yasstring);
+	int i=div(x,y);
+	String iasstring=(i+ " ");
+	label1.setText(iasstring);
+}
 }
 
 }
