@@ -1,87 +1,94 @@
 package _11_whack_a_mole;
 
 import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.Date;
 import java.util.Random;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.text.StyledEditorKit.ForegroundAction;
 
-public class WhackaMole {
+public class WhackaMole implements ActionListener {
 JFrame frame=new JFrame();
 JPanel panel=new JPanel();
 
-JButton button1=new JButton();
-JButton button2=new JButton();
-JButton button3=new JButton();
-JButton button4=new JButton();
-JButton button5=new JButton();
-JButton button6=new JButton();
-JButton button7=new JButton();
-JButton button8=new JButton();
-JButton button9=new JButton();
-JButton button10=new JButton();
-JButton button11=new JButton();
-JButton button12=new JButton();
+JButton molebutton;
+Random ran=new Random();
+int x= ran.nextInt(12);
+int num=0;
+Date date=new Date();
 
 void setup() {
-	panel.add(button1);
-	panel.add(button2);
-	panel.add(button3);
-	panel.add(button4);
-	panel.add(button5);
-	panel.add(button6);
-	panel.add(button7);
-	panel.add(button8);
-	panel.add(button9);
-	panel.add(button10);
-	panel.add(button11);
-	panel.add(button12);
-	panel.setLayout(new GridLayout(3,4));
-	frame.add(panel);
-	frame.pack();
-	frame.setVisible(true);
-}
-public void drawButtons() {
-	Random ran=new Random();
-	int x= ran.nextInt(12);
-	if(x==0) {
-		button1.setText("Mole!");
-	}
-	if(x==1) {
-		button2.setText("Mole!");
-	}
-	if(x==2) {
-		button3.setText("Mole!");
-	}
-	if(x==3) {
-		button4.setText("Mole!");
-	}
-	if(x==4) {
-		button5.setText("Mole!");
-	}
-	if(x==5) {
-		button6.setText("Mole!");
-	}
-	if(x==6) {
-		button7.setText("Mole!");
-	}
-	if(x==7) {
-		button8.setText("Mole!");
-	}
-	if(x==8) {
-		button9.setText("Mole!");
-	}
-	if(x==9) {
-		button10.setText("Mole!");
+		panel.setLayout(new GridLayout(3,4));
+		frame.add(panel);
+		
+		frame.setVisible(true);
+		drawButtons(x);
+		frame.pack();
 	}
 	
-	if(x==10) {
-		button11.setText("Mole!");
+	
+
+
+public void drawButtons(int randomnumber) {
+for (int i = 0; i < 12; i++) {
+	JButton button=new JButton();
+	panel.add(button);
+	button.addActionListener(this);
+	if(randomnumber==i) {
+		molebutton=button;
+		molebutton.setText("Mole!");
 	}
-	if(x==11) {
-		button12.setText("Mole!");
+}
+
+}
+static void speak(String words) {
+    if( System.getProperty( "os.name" ).contains( "Windows" ) ) {
+        String cmd = "PowerShell -Command \"Add-Type -AssemblyName System.Speech; (New-Object System.Speech.Synthesis.SpeechSynthesizer).Speak('"
+                + words + "');\"";
+        try {
+            Runtime.getRuntime().exec( cmd ).waitFor();
+        } catch( Exception e ) {
+            e.printStackTrace();
+        }
+    } else {
+        try {
+            Runtime.getRuntime().exec( "say " + words ).waitFor();
+        } catch( Exception e ) {
+            e.printStackTrace();
+        }
+    }
+}
+@Override
+public void actionPerformed(ActionEvent e) {
+	// TODO Auto-generated method stub
+	JButton buttonPressed = (JButton) e.getSource();
+	if(buttonPressed==molebutton) {
+		num++;
+		frame.dispose();
+		frame=new JFrame();
+		panel=new JPanel();
+		x=ran.nextInt(12);
+		setup();
+
+		}
+	else {
+		speak("you missed.");
 	}
+	if(num==10) {
+		endGame(date, 10);
+		System.exit(0);
+	}
+
+}
+private void endGame(Date timeAtStart, int molesWhacked) { 
+    Date timeAtEnd = new Date();
+    JOptionPane.showMessageDialog(null, "Your whack rate is "
+            + ((timeAtEnd.getTime() - timeAtStart.getTime()) / 1000.00 / molesWhacked)
+                  + " moles per second.");
 }
 }
